@@ -1,0 +1,23 @@
+name: Exercise bot
+permissions:
+  contents: write
+on: 
+  push:
+    branches:
+      - develop
+jobs:
+  exercise-bot:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the branch
+      - name: checkout
+        uses: actions/checkout@v2
+
+      # Bot actions
+      - name: Run bot script
+        run: |
+          # setup the username and email
+          git config user.name "Exercise Bot"
+          git config user.email "<>"
+
+          bash ./.github/scripts/exercisebot.sh -c
